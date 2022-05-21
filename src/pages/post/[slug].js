@@ -19,7 +19,7 @@ const PostDetail = ({ body, title, image, createdAt, author }) => {
 			</Head>
 			<Navbar />
 			<Container maxW="1200px" mb="100px">
-				<Flex direction="column" mt="150px" mx="3">
+				<Flex w={{ base: "1000px", xl: "1200px", "2xl": "1440px" }} direction="column" mt="150px" mx="3">
 					<Heading>{title}</Heading>
 					<Flex align="center" gap="1" mt="2" color="gray.500">
 						<BsCalendar3 />

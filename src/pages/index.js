@@ -20,22 +20,32 @@ export default function Home({ results, feature }) {
 			</Head>
 			<Navbar />
 			<Container maxW="1440px" mb="100px">
-				<Flex w={{ base: "800px", xl: "1200px", "2xl": "1440px" }} gap="2">
+				<Flex w={{ base: "1000px", xl: "1200px", "2xl": "1440px" }} gap="10">
 					<Flex direction="column" mt="150px" w={{ base: "100%", lg: "65%" }}>
 						{results?.map((post, _i) => (
 							<>
 								<Divider />
-								<Flex key={_i} w="100%" h="200px" py="1" px="2" gap="2" mx="100px" my="2" overflow="hidden">
+								<Flex
+									key={_i}
+									w="100%"
+									h={{ base: "250px", xl: "200px" }}
+									py="1"
+									px="2"
+									gap="2"
+									mx="100px"
+									my="2"
+									overflow="hidden"
+								>
 									<Flex direction="column" gap="2" w="60%">
 										<Text
 											fontWeight="bold"
-											fontSize={["10pt", "11pt", "13pt", "15pt"]}
+											fontSize={{ base: "22pt", xl: "15pt" }}
 											onClick={() => router.push(`/post/${post.slug.current}`)}
 											cursor="pointer"
 										>
 											{post.title}
 										</Text>
-										<Flex fontSize={["8pt", "12pt", "13pt", "14pt"]}>
+										<Flex fontSize={{ base: "18pt", xl: "15pt" }}>
 											<SanityBlockContent blocks={post.begin} />
 										</Flex>
 									</Flex>
@@ -47,7 +57,7 @@ export default function Home({ results, feature }) {
 							</>
 						))}
 					</Flex>
-					<Flex w="25%" display={{ base: "none", lg: "flex" }}>
+					<Flex w="300px" display={{ base: "none", lg: "flex" }}>
 						<Rightbar feature={feature} />
 					</Flex>
 				</Flex>
@@ -59,7 +69,7 @@ export default function Home({ results, feature }) {
 
 export const getServerSideProps = async () => {
 	const query = '*[ _type == "post" ] | order(_createdAt desc)';
-	const feaQuery = '*[ _type == "post" && isfeature == true]';
+	const feaQuery = '*[ _type == "post" && isfeature == true] | order(_createdAt desc)';
 
 	const results = await client.fetch(query);
 	// console.log({ results });

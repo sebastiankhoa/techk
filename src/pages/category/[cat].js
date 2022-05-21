@@ -19,21 +19,21 @@ const Category = ({ begin, title, image, createdAt, results }) => {
 			</Head>
 			<Navbar />
 			<Container maxW="1440px">
-				<Flex direction="column" mt="150px" w={{ base: "900px", xl: "1200px", "2xl": "1440px" }}>
+				<Flex direction="column" mt="150px" w={{ base: "1000px", xl: "1200px", "2xl": "1440px" }}>
 					<Divider />
-					{results.map((post, _i) => (
+					{results.map((post) => (
 						<>
-							<Flex key={_i} w="100%" h="240px" py="5" gap="2" mx="100px">
+							<Flex key={post._id} w="100%" h={{ base: "250px", xl: "200px" }} py="5" gap="2" mx="100px">
 								<Flex direction="column" gap="2" w="60%">
 									<Text
 										fontWeight="bold"
-										fontSize="15pt"
+										fontSize={{ base: "22pt", xl: "15pt" }}
 										onClick={() => router.push(`/post/${post.slug.current}`)}
 										cursor="pointer"
 									>
 										{post.title}
 									</Text>
-									<Flex overflow="hidden">
+									<Flex overflow="hidden" fontSize={{ base: "18pt", xl: "15pt" }}>
 										<SanityBlockContent blocks={post.begin} />
 									</Flex>
 								</Flex>
@@ -58,7 +58,7 @@ export const getServerSideProps = async ({ params: { cat } }) => {
 	const query = `*[ _type == "post" &&  '${cat}' in categories[]-> title ]`;
 
 	const results = await client.fetch(query);
-	console.log({ results });
+	// console.log({ results });
 	return {
 		props: {
 			results,
