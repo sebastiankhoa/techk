@@ -20,14 +20,16 @@ const PostDetail = ({ body, title, image, createdAt, author }) => {
 			<Navbar />
 			<Container maxW="1200px" mb="100px">
 				<Flex w={{ base: "1000px", xl: "1200px", "2xl": "1440px" }} direction="column" mt="150px" mx="3">
-					<Heading>{title}</Heading>
+					<Text fontSize={{ base: "30pt", xl: "14pt" }} fontWeight="bold">
+						{title}
+					</Text>
 					<Flex align="center" gap="1" mt="2" color="gray.500">
 						<BsCalendar3 />
 						<Text>{createdAt.split("T")[0]}</Text>
 					</Flex>
 					<Divider p="5" />
 					<Img src={image && urlFor(image)} my="5" objectFit="cover" w="full" h="600px" rounded="10px" />
-					<Flex fontSize="14pt" fontWeight="500">
+					<Flex fontSize={{ base: "30pt", xl: "14pt" }} fontWeight="500">
 						<SanityBlockContent blocks={body} />
 					</Flex>
 				</Flex>
