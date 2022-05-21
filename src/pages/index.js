@@ -57,7 +57,19 @@ export default function Home({ results, feature }) {
 							</>
 						))}
 					</Flex>
-					<Flex w="300px" display={{ base: "none", lg: "flex" }}>
+					<Flex
+						w="300px"
+						display={{ base: "none", lg: "flex" }}
+						direction="column"
+						h="600px"
+						bg="blackAlpha.100"
+						mt="150px"
+						gap="5"
+						py="5"
+						px="2"
+						overflowX="hidden"
+						overflowY="scroll"
+					>
 						<Rightbar feature={feature} />
 					</Flex>
 				</Flex>

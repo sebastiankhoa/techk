@@ -8,27 +8,15 @@ const Rightbar = ({ feature }) => {
 	const router = useRouter();
 	return (
 		<>
-			<Flex
-				direction="column"
-				h="600px"
-				bg="blackAlpha.100"
-				mt="150px"
-				gap="5"
-				py="5"
-				px="2"
-				overflowX="hidden"
-				overflowY="scroll"
-			>
-				{feature.map((post, _i) => (
-					<>
-						<Flex key={post._id} gap="1" cursor="pointer" onClick={() => router.push(`/post/${post.slug.current}`)}>
-							<Img src={urlFor(post.mainImage)} w="120px" objectFit="cover" />
-							<Text fontSize="9pt">{post.title}</Text>
-						</Flex>
-						<Divider border="2px" />
-					</>
-				))}
-			</Flex>
+			{feature.map((post, _i) => (
+				<>
+					<Flex key={post._id} gap="1" cursor="pointer" onClick={() => router.push(`/post/${post.slug.current}`)}>
+						<Img src={urlFor(post.mainImage)} w="120px" objectFit="cover" />
+						<Text fontSize="9pt">{post.title}</Text>
+					</Flex>
+					<Divider border="2px" />
+				</>
+			))}
 		</>
 	);
 };

@@ -1,9 +1,8 @@
 import { Container, Divider, Flex, Img, Text } from "@chakra-ui/react";
 import SanityBlockContent from "@sanity/block-content-to-react";
 import Head from "next/head";
-import React from "react";
 import { useRouter } from "next/router";
-
+import React from "react";
 import { client, urlFor } from "../../../client/client";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/navbar";
@@ -55,7 +54,7 @@ export default Category;
 
 export const getServerSideProps = async ({ params: { cat } }) => {
 	// console.log({ cat });
-	const query = `*[ _type == "post" &&  '${cat}' in categories[]-> title ]`;
+	const query = `*[ _type == "post" &&  '${cat}' in categories[]-> title ] | order(_createdAt desc)`;
 
 	const results = await client.fetch(query);
 	// console.log({ results });
