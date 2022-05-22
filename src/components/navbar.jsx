@@ -1,14 +1,39 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
 	const router = useRouter();
+	const [isScroll, setIsScroll] = useState(false);
+
+	//check if user scroll
+	useEffect(() => {
+		const handlescroll = () => {
+			if (window.scrollY > 0) {
+				setIsScroll(true);
+			} else {
+				setIsScroll(false);
+			}
+		};
+		window.addEventListener("scroll", handlescroll);
+		return () => {
+			window.removeEventListener("scroll", handlescroll);
+		};
+	}, []);
 
 	return (
-		<Flex pos="fixed" w="full" top="0" h="100px" bg="black" direction="column" align="center" zIndex="99">
+		<Flex
+			pos="fixed"
+			w="full"
+			top="0"
+			h="100px"
+			bg={isScroll ? "blackAlpha.600" : "black"}
+			direction="column"
+			align="center"
+			zIndex="99"
+		>
 			<Flex align="center" px={{ base: "50px", lg: "1" }} w="1200px">
 				<Text
 					bgGradient="linear(to-l, #7928CA, #FF0080)"

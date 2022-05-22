@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { client, urlFor } from "../../client/client";
 import Footer from "../components/Footer";
 import Navbar from "../components/navbar";
+import PostCard from "../components/PostCard";
 import Rightbar from "../components/Rightbar";
 
 export default function Home({ results, feature }) {
@@ -22,56 +23,15 @@ export default function Home({ results, feature }) {
 			<Container maxW="1440px" mb="100px">
 				<Flex w={{ base: "1000px", xl: "1200px", "2xl": "1440px" }} gap="10">
 					<Flex direction="column" mt="150px" w={{ base: "100%", lg: "65%" }}>
-						{results?.map((post, _i) => (
+						{results?.map((post) => (
 							<>
 								<Divider />
-								<Flex
-									key={_i}
-									w="100%"
-									h={{ base: "250px", xl: "200px" }}
-									py="1"
-									px="2"
-									gap="2"
-									mx="100px"
-									my="2"
-									overflow="hidden"
-								>
-									<Flex direction="column" gap="2" w="60%">
-										<Text
-											fontWeight="bold"
-											fontSize={{ base: "22pt", xl: "15pt" }}
-											onClick={() => router.push(`/post/${post.slug.current}`)}
-											cursor="pointer"
-										>
-											{post.title}
-										</Text>
-										<Flex fontSize={{ base: "18pt", xl: "15pt" }}>
-											<SanityBlockContent blocks={post.begin} />
-										</Flex>
-									</Flex>
-									<Flex w="40%" onClick={() => router.push(`/post/${post.slug.current}`)} cursor="pointer">
-										<Img w="70%" h="180px" src={urlFor(post.mainImage)} objectFit="cover" />
-									</Flex>
-								</Flex>
+								<PostCard post={post} />
 								<Divider />
 							</>
 						))}
 					</Flex>
-					<Flex
-						w="300px"
-						display={{ base: "none", lg: "flex" }}
-						direction="column"
-						h="600px"
-						bg="blackAlpha.100"
-						mt="150px"
-						gap="5"
-						py="5"
-						px="2"
-						overflowX="hidden"
-						overflowY="scroll"
-					>
-						<Rightbar feature={feature} />
-					</Flex>
+					<Rightbar feature={feature} />
 				</Flex>
 			</Container>
 			<Footer />

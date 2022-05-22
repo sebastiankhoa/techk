@@ -20,7 +20,7 @@ const PostDetail = ({ body, title, image, createdAt, author }) => {
 			<Navbar />
 			<Container maxW="1200px" mb="100px">
 				<Flex w={{ base: "1000px", xl: "1200px", "2xl": "1440px" }} direction="column" mt="150px" mx="3">
-					<Text fontSize={{ base: "30pt", xl: "14pt" }} fontWeight="bold">
+					<Text fontSize={{ base: "30pt", xl: "25pt" }} fontWeight="bold">
 						{title}
 					</Text>
 					<Flex align="center" gap="1" mt="2" color="gray.500">
