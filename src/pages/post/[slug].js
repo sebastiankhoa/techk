@@ -30,7 +30,11 @@ const PostDetail = ({ body, title, image, createdAt, author }) => {
 					<Divider p="5" />
 					<Img src={image && urlFor(image)} my="5" objectFit="cover" w="full" h="600px" rounded="10px" />
 					<Flex fontSize={{ base: "30pt", xl: "14pt" }} fontWeight="500">
-						<SanityBlockContent blocks={body} />
+						<SanityBlockContent
+							blocks={body}
+							projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+							dataset="production"
+						/>
 					</Flex>
 				</Flex>
 			</Container>
@@ -45,7 +49,7 @@ export const getServerSideProps = async ({ params: { slug } }) => {
 	const query = `*[ _type == "post" && slug.current == '${slug}' ][0]`;
 
 	const result = await client.fetch(query);
-	console.log(result);
+	// console.log(result);
 	return {
 		props: {
 			body: result.body,
