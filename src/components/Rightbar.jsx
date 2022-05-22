@@ -40,7 +40,7 @@ const Rightbar = ({ feature }) => {
 					<>
 						<Flex key={post._id} gap="1" cursor="pointer" onClick={() => router.push(`/post/${post.slug.current}`)}>
 							<Img src={urlFor(post.mainImage)} w="120px" objectFit="cover" />
-							<Text fontSize="9pt">{post.title}</Text>
+							<Text fontSize="11pt">{post.title}</Text>
 						</Flex>
 						<Divider border="2px" />
 					</>

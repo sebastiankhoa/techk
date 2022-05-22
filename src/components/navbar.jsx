@@ -1,12 +1,18 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Image, Switch, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useRouter } from "next/router";
 
+import { useRecoilState } from "recoil";
+import { bgState } from "../../atom/State";
+
 const Navbar = () => {
 	const router = useRouter();
 	const [isScroll, setIsScroll] = useState(false);
+	const [darkmode, setDarkmode] = useRecoilState(bgState);
+
+	console.log({ darkmode });
 
 	//check if user scroll
 	useEffect(() => {
@@ -97,6 +103,10 @@ const Navbar = () => {
 					>
 						Blockchain
 					</Text>
+					<Flex align="center" gap="2">
+						<Text color="white">Dark</Text>
+						<Switch isChecked={darkmode} colorScheme="green" onChange={() => setDarkmode((prev) => !prev)} />
+					</Flex>
 					<Flex
 						color="white"
 						fontWeight="900"

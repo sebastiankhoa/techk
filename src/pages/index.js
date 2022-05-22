@@ -1,9 +1,9 @@
-import { Flex, Text, Container, Divider, Img } from "@chakra-ui/react";
-import SanityBlockContent from "@sanity/block-content-to-react";
+import { Container, Divider, Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-
-import { client, urlFor } from "../../client/client";
+import { useRecoilValue } from "recoil";
+import { bgState } from "../../atom/State";
+import { client } from "../../client/client";
 import Footer from "../components/Footer";
 import Navbar from "../components/navbar";
 import PostCard from "../components/PostCard";
@@ -12,8 +12,11 @@ import Rightbar from "../components/Rightbar";
 export default function Home({ results, feature }) {
 	const router = useRouter();
 	// console.log({ results });
+
+	const isDark = useRecoilValue(bgState);
+
 	return (
-		<Flex direction="column">
+		<Flex direction="column" bg={isDark ? "black" : "white"} color={isDark ? "white" : "unset"}>
 			<Head>
 				<title>TechK</title>
 				<meta name="description" content="Web tin tức công nghệ" />
@@ -26,7 +29,7 @@ export default function Home({ results, feature }) {
 						{results?.map((post) => (
 							<>
 								<Divider />
-								<PostCard post={post} />
+								<PostCard post={post} key={post.title} />
 								<Divider />
 							</>
 						))}
