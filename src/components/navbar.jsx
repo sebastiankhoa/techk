@@ -103,7 +103,7 @@ const Navbar = () => {
 					>
 						Blockchain
 					</Text>
-					<Flex align="center" gap="2">
+					<Flex align="center" gap="2" display={{ base: "none", xl: "flex" }}>
 						<Text color="white">Dark</Text>
 						<Switch isChecked={darkmode} colorScheme="green" onChange={() => setDarkmode((prev) => !prev)} />
 					</Flex>
