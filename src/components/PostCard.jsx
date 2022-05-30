@@ -13,7 +13,7 @@ const PostCard = ({ post }) => {
 				<Text
 					fontWeight="bold"
 					fontSize={{ base: "22pt", xl: "15pt" }}
-					onClick={() => router.push(`/post/${post.slug.current}`)}
+					onClick={() => router.replace(`/post/${post.slug.current}`)}
 					cursor="pointer"
 				>
 					{post.title}
@@ -22,7 +22,7 @@ const PostCard = ({ post }) => {
 					<SanityBlockContent blocks={post.begin} />
 				</Flex>
 			</Flex>
-			<Flex w="40%" onClick={() => router.push(`/post/${post.slug.current}`)} cursor="pointer">
+			<Flex w="40%" onClick={() => router.replace(`/post/${post.slug.current}`)} cursor="pointer">
 				<Img w="70%" h="180px" src={urlFor(post.mainImage)} objectFit="cover" />
 			</Flex>
 		</Flex>

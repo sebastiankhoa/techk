@@ -1,8 +1,6 @@
 import { Container, Divider, Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useRecoilValue } from "recoil";
-import { bgState } from "../../atom/State";
 import { client } from "../../client/client";
 import Footer from "../components/Footer";
 import Navbar from "../components/navbar";
@@ -11,12 +9,9 @@ import Rightbar from "../components/Rightbar";
 
 export default function Home({ results, feature }) {
 	const router = useRouter();
-	// console.log({ results });
-
-	const isDark = useRecoilValue(bgState);
 
 	return (
-		<Flex direction="column" bg={isDark ? "black" : "white"} color={isDark ? "white" : "unset"}>
+		<Flex direction="column">
 			<Head>
 				<title>TechK</title>
 				<meta name="description" content="Web tin tức công nghệ" />

@@ -1,18 +1,14 @@
-import { Flex, Image, Switch, Text } from "@chakra-ui/react";
+import { Flex, Switch, Text, useColorMode } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import { useRouter } from "next/router";
-
-import { useRecoilState } from "recoil";
-import { bgState } from "../../atom/State";
+import { BsFillMoonFill, BsSun } from "react-icons/bs";
 
 const Navbar = () => {
 	const router = useRouter();
 	const [isScroll, setIsScroll] = useState(false);
-	const [darkmode, setDarkmode] = useRecoilState(bgState);
-
-	console.log({ darkmode });
+	const { colorMode, toggleColorMode } = useColorMode();
 
 	//check if user scroll
 	useEffect(() => {
@@ -50,15 +46,7 @@ const Navbar = () => {
 				>
 					TechK
 				</Text>
-				<Flex
-					color="white"
-					align="center"
-					gap="1"
-					ml="10"
-					fontWeight="900"
-					cursor="pointer"
-					onClick={() => router.push("/")}
-				>
+				<Flex color="white" align="center" gap="1" ml="10" fontWeight="900" cursor="pointer" onClick={() => router.replace("/")}>
 					<AiOutlineHome />
 					<Text fontSize="12pt">Home</Text>
 				</Flex>
@@ -67,7 +55,7 @@ const Navbar = () => {
 						fontSize="12pt"
 						_hover={{ fontWeight: "700" }}
 						cursor="pointer"
-						onClick={() => router.push("/category/Mobile")}
+						onClick={() => router.replace("/category/Mobile")}
 					>
 						Mobile
 					</Text>
@@ -75,7 +63,7 @@ const Navbar = () => {
 						fontSize="12pt"
 						_hover={{ fontWeight: "700" }}
 						cursor="pointer"
-						onClick={() => router.push("/category/Computer")}
+						onClick={() => router.replace("/category/Computer")}
 					>
 						Computer
 					</Text>
@@ -83,7 +71,7 @@ const Navbar = () => {
 						fontSize="12pt"
 						_hover={{ fontWeight: "700" }}
 						cursor="pointer"
-						onClick={() => router.push("/category/Internet")}
+						onClick={() => router.replace("/category/Internet")}
 					>
 						Internet
 					</Text>
@@ -91,7 +79,7 @@ const Navbar = () => {
 						fontSize="12pt"
 						_hover={{ fontWeight: "700" }}
 						cursor="pointer"
-						onClick={() => router.push("/category/Review")}
+						onClick={() => router.replace("/category/Review")}
 					>
 						Review
 					</Text>
@@ -99,14 +87,11 @@ const Navbar = () => {
 						fontSize="12pt"
 						_hover={{ fontWeight: "700" }}
 						cursor="pointer"
-						onClick={() => router.push("/category/Blockchain")}
+						onClick={() => router.replace("/category/Blockchain")}
 					>
 						Blockchain
 					</Text>
-					<Flex align="center" gap="2" display={{ base: "none", xl: "flex" }}>
-						<Text color="white">Dark</Text>
-						<Switch isChecked={darkmode} colorScheme="green" onChange={() => setDarkmode((prev) => !prev)} />
-					</Flex>
+
 					<Flex
 						color="white"
 						fontWeight="900"
@@ -115,6 +100,9 @@ const Navbar = () => {
 					>
 						<Text>Admin</Text>
 						<MdOutlineAdminPanelSettings size="1.5rem" />
+					</Flex>
+					<Flex align="center" transition="1s ease" cursor="pointer" onClick={() => toggleColorMode((prev) => !prev)}>
+						{colorMode == "light" ? <BsFillMoonFill size="1.3rem" /> : <BsSun size="1.3rem" />}
 					</Flex>
 				</Flex>
 			</Flex>
